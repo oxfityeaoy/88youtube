@@ -1,0 +1,10 @@
+#!name=YouTube / Music 个人版
+#!desc=iOS 原生 App 的广告过滤、后台播放与画中画
+#!arguments=ads:true,background:true,pip:true,debug:false
+#!arguments-desc=ads 去广告，background 后台播放，pip 画中画，debug 输出处理日志。各项填写 true 或 false。
+
+[Script]
+youtube-personal = type=http-response,pattern=^https://youtubei(?:-att)?\.googleapis\.com/youtubei/v1/(?:player(?:/ad_break)?|get_watch|browse|next|search|reel/reel_watch_sequence|account/get_setting)(?:\?.*)?$,requires-body=true,binary-body-mode=true,max-size=2097152,timeout=5,script-path=YouTube-Personal.js,argument="ads={{{ads}}}&background={{{background}}}&pip={{{pip}}}&debug={{{debug}}}"
+
+[MITM]
+hostname = %APPEND% youtubei.googleapis.com, youtubei-att.googleapis.com

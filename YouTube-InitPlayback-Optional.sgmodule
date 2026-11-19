@@ -1,0 +1,8 @@
+#!name=YouTube / Music 播放接口兼容补丁
+#!desc=搭配个人版使用。让带 oad 或 ack 的 initplayback 请求尝试回退到常规播放器接口。默认无需启用。
+
+[Map Local]
+^https://[\w-]+\.googlevideo\.com/initplayback\?(?:[^&#]*&)*(?:oad|ack)(?:=[^&#]*)?(?:&[^#]*)?$ data-type=text data="" status-code=200
+
+[MITM]
+hostname = %APPEND% *.googlevideo.com
